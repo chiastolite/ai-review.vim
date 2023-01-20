@@ -1,5 +1,5 @@
 import { OPENAI_REVIEW_BUFFER } from "./constant.ts";
-import { buffer, Denops, fn, unknownutil, variable } from "./deps.ts";
+import { buffer, Denops, fn, variable } from "./deps.ts";
 
 let openAiWinInfo: buffer.OpenResult | undefined = undefined;
 
