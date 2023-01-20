@@ -1,3 +1,4 @@
+import { OPENAI_REVIEW_BUFFER } from "./constant.ts";
 import { buffer, Denops, fn, unknownutil, variable } from "./deps.ts";
 
 let openAiWinInfo: buffer.OpenResult | undefined = undefined;
@@ -36,14 +37,14 @@ export const openOpenAiBuffer = async (
   denops: Denops
 ): Promise<buffer.OpenResult> => {
   if (openAiWinInfo == null) {
-    openAiWinInfo = await buffer.open(denops, `ai-review://`, {
+    openAiWinInfo = await buffer.open(denops, OPENAI_REVIEW_BUFFER, {
       opener: "split",
     });
   } else {
     const winId = (await fn.bufwinid(denops, openAiWinInfo.bufnr)) as number;
 
     if (winId === -1) {
-      openAiWinInfo = await buffer.open(denops, `ai-review://`, {
+      openAiWinInfo = await buffer.open(denops, OPENAI_REVIEW_BUFFER, {
         opener: "split",
       });
     } else {
