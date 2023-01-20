@@ -6,5 +6,5 @@ function! ai_review#request(funcname, args) abort
 endfunction
 
 function! ai_review#options(_, __, ___) abort
-  return ['find_bugs', 'optimize', 'add_comments', 'add_tests','explain',  'text_review', 'use_prompt']
+  return ['find_bugs', 'optimize', 'add_comments', 'add_tests', 'explain', 'text_review', 'use_prompt']
 endfunction

@@ -5,7 +5,7 @@ import {
   getOpenAiFileType,
   getOpenAiPrompt,
 } from "./openai/client.ts";
-import { getVimContext, writeBuffer } from "./vim.ts";
+import { getVimContext, openOpenAiBuffer, writeBuffer } from "./vim.ts";
 import { OpenAiModes } from "./types.ts";
 import { writableStreamFromVim } from "./stream/writable-stream-from-vim.ts";
 import { OPENAI_SEPARATOR_LINE } from "./constant.ts";
@@ -40,31 +40,27 @@ export const main = async (denops: Denops): Promise<void> => {
         prompt: prompt.sendPrompt,
       });
 
-      if (openAiWinInfo == null) {
-        openAiWinInfo = await buffer.open(denops, `ai-review://`, {
-          opener: "split",
-        });
-      }
+      const { winid, bufnr } = await openOpenAiBuffer(denops);
 
-      await fn.setbufvar(denops, openAiWinInfo.bufnr, "&filetype", "markdown");
-      await fn.setbufvar(denops, openAiWinInfo.bufnr, "&buftype", "nofile");
+      await fn.setbufvar(denops, bufnr, "&filetype", "markdown");
+      await fn.setbufvar(denops, bufnr, "&buftype", "nofile");
 
       await writeBuffer(
         denops,
         prompt.displayPrompt,
-        openAiWinInfo.winid,
-        openAiWinInfo.bufnr
+        winid,
+        bufnr
       );
 
       await openAiStream.pipeTo(
-        writableStreamFromVim(denops, openAiWinInfo.winid, openAiWinInfo.bufnr)
+        writableStreamFromVim(denops, winid, bufnr)
       );
 
       await writeBuffer(
         denops,
         OPENAI_SEPARATOR_LINE,
-        openAiWinInfo.winid,
-        openAiWinInfo.bufnr
+        winid,
+        bufnr
       );
     },
   };

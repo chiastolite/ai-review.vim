@@ -1,5 +1,7 @@
 import { buffer, Denops, fn, unknownutil, variable } from "./deps.ts";
 
+let openAiWinInfo: buffer.OpenResult | undefined = undefined;
+
 type VimContext = {
   code: string;
   fileType: string;
@@ -30,7 +32,34 @@ export const getVimContext = async ({
   };
 };
 
-export const writeBuffer = async (denops: Denops, text: string, winid: number, bufnr: number): Promise<void> => {
+export const openOpenAiBuffer = async (
+  denops: Denops
+): Promise<buffer.OpenResult> => {
+  if (openAiWinInfo == null) {
+    openAiWinInfo = await buffer.open(denops, `ai-review://`, {
+      opener: "split",
+    });
+  } else {
+    const winId = (await fn.bufwinid(denops, openAiWinInfo.bufnr)) as number;
+
+    if (winId === -1) {
+      openAiWinInfo = await buffer.open(denops, `ai-review://`, {
+        opener: "split",
+      });
+    } else {
+      await fn.win_gotoid(denops, winId);
+    }
+  }
+
+  return openAiWinInfo;
+};
+
+export const writeBuffer = async (
+  denops: Denops,
+  text: string,
+  winid: number,
+  bufnr: number
+): Promise<void> => {
   const remaining = (await fn.getbufline(denops, bufnr, "$")).join("\n");
   const newLines = text.split("\n");
   newLines[0] = remaining + newLines[0];
