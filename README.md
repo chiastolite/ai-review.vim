@@ -1,5 +1,7 @@
 # ai-review.vim
 
+This plugin depends on [denops.vim](https://github.com/vim-denops/denops.vim).
+
 ## Demo
 
 https://user-images.githubusercontent.com/5423775/213613071-c806bce6-546f-4aa1-8f77-f329b9daa882.mp4
