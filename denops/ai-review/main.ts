@@ -48,7 +48,9 @@ export const main = async (denops: Denops): Promise<void> => {
       await fn.setbufvar(denops, bufnr, "&filetype", "markdown");
       await fn.setbufvar(denops, bufnr, "&buftype", "nofile");
 
+      await writeBuffer(denops, "## Prompt\n\n", winid, bufnr);
       await writeBuffer(denops, prompt.displayPrompt, winid, bufnr);
+      await writeBuffer(denops, "\n\n## Response", winid, bufnr);
       await openAiStream.pipeTo(writableStreamFromVim(denops, winid, bufnr));
       await writeBuffer(denops, OPENAI_SEPARATOR_LINE, winid, bufnr);
 
