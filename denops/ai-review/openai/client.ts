@@ -1,6 +1,6 @@
 import {
-  OPENAI_BASE_CONTEXT,
   OPENAI_API_BASE,
+  OPENAI_BASE_CONTEXT,
   OPENAI_MAX_TOKENS,
   OPENAI_MODEL,
 } from "../constant.ts";
@@ -130,7 +130,7 @@ export const getOpenAiPrompt = (
         ),
       };
     }
-    case "text_review": {
+    case "improve_text": {
       return {
         sendPrompt: `${OPENAI_BASE_CONTEXT}${OPENAI_TEXT_REVIEW_PROMPT}\n\n${code}`,
         displayPrompt: `${OPENAI_TEXT_REVIEW_PROMPT}\n\n${code}`,
@@ -187,5 +187,5 @@ export const getOpenAiFileType = (
   mode: OpenAiModes,
   fileType: string
 ): string => {
-  return mode !== "text_review" && mode !== "use_prompt" ? fileType : "text";
+  return mode !== "improve_text" && mode !== "use_prompt" ? fileType : "text";
 };

@@ -4,7 +4,7 @@ export const OPENAI_MODES = [
   "add_comments",
   "add_tests",
   "explain",
-  "text_review",
+  "improve_text",
   "use_prompt",
 ] as const;
 export const OPENAI_REVIEW_BUFFER = "ai-review://";

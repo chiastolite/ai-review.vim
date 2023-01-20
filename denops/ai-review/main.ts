@@ -37,6 +37,7 @@ export const main = async (denops: Denops): Promise<void> => {
       }
 
       REVIEW_LOCK = true;
+
       const openAiClient = getOpenAiClient();
       const openAiStream = await openAiClient.completions({
         prompt: prompt.sendPrompt,
