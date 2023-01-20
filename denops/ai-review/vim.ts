@@ -24,12 +24,13 @@ export const getVimContext = async ({
       lastLine as number
     )) as Array<string>
   ).join("\n");
-  const fileType = await variable.options.get(denops, "filetype");
-  unknownutil.assertString(fileType);
+  const fileType = (await variable.options.get(denops, "filetype")) as
+    | string
+    | null;
 
   return {
     code,
-    fileType,
+    fileType: fileType ?? "",
   };
 };
 

@@ -1,5 +1,7 @@
 # ai-review.vim
 
+This plugin uses OpenAI's API for code review, etc.
+
 This plugin depends on [denops.vim](https://github.com/vim-denops/denops.vim).
 
 ## Demo
