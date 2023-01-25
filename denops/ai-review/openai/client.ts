@@ -13,6 +13,7 @@ import {
   OPENAI_FIND_BUGS_PROMPT,
   OPENAI_OPTIMIZE_PROMPT,
   OPENAI_TEXT_REVIEW_PROMPT,
+  OPENAI_SUGGEST_VARIABLE,
 } from "../constant.ts";
 
 const ORGANIZATION = Deno.env.get("OPENAI_ORGANIZATION") ?? "";
@@ -139,6 +140,12 @@ export const getOpenAiPrompt = (
     case "use_prompt": {
       return {
         sendPrompt: `${OPENAI_BASE_CONTEXT}${code}`,
+        displayPrompt: code,
+      };
+    }
+    case "suggest_variable_name": {
+      return {
+        sendPrompt: `${OPENAI_BASE_CONTEXT}${OPENAI_SUGGEST_VARIABLE}\n\n${code}`,
         displayPrompt: code,
       };
     }

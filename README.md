@@ -12,7 +12,7 @@ https://user-images.githubusercontent.com/5423775/213613071-c806bce6-546f-4aa1-8
 
 Set `OPENAI_API_KEY` environment variable and execute `:AiReview {mode}` or `:'<,'>AiReview {mode}`
 
-mode: `['find_bugs', 'optimize', 'add_comments', 'add_tests', 'explain', 'improve_text', 'use_prompt']`
+mode: `['find_bugs', 'optimize', 'add_comments', 'add_tests', 'explain', 'improve_text', 'use_prompt', 'suggest_variable_name']`
 
 ## Acknowledgements
 

@@ -6,6 +6,7 @@ export const OPENAI_MODES = [
   "explain",
   "improve_text",
   "use_prompt",
+  "suggest_variable_name"
 ] as const;
 export const OPENAI_REVIEW_BUFFER = "ai-review://";
 export const OPENAI_API_BASE = "https://api.openai.com/v1";
@@ -32,6 +33,7 @@ export const OPENAI_OPTIMIZE_PROMPT = "Optimize the following code";
 export const OPENAI_ADD_COMMENTS_PROMPT = "Add comments for the following code";
 export const OPENAI_ADD_TESTS_PROMPT = "Implement tests for the following code";
 export const OPENAI_EXPLAIN_PROMPT = "Explain the following code";
+export const OPENAI_SUGGEST_VARIABLE = "Suggest only variable names for the following text";
 
 export const OPENAI_TEXT_REVIEW_PROMPT =
   "I want you to act as an English translator, spelling corrector and improver. I will speak to you in any language and you will detect the language, translate it and answer in the corrected and improved version of my text, in English. I want you to replace my simplified A0-level words and sentences with more beautiful and elegant, upper level English words and sentences. Keep the meaning same, but make them more scientific and academic. Please list and write down the corrections you have made, along with the reasons why.. My sentences are ";
